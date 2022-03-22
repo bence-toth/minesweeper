@@ -1,25 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
 
-function App() {
+const numberOfRows = 10;
+const numberOfColumns = 15;
+const numberOfMines = (numberOfRows * numberOfColumns) / 5;
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div
+      className="gameBoard"
+      style={{ aspectRatio: `${numberOfColumns} / ${numberOfRows}` }}
+    >
+      {Array(numberOfRows)
+        .fill()
+        .map((_, rowIndex) => (
+          <div class="row">
+            {Array(numberOfColumns)
+              .fill()
+              .map((_, columnIndex) => (
+                <div class="cell">
+                  <button
+                    data-row={rowIndex}
+                    data-column={columnIndex}
+                  ></button>
+                </div>
+              ))}
+          </div>
+        ))}
     </div>
   );
-}
+};
 
 export default App;
